@@ -1,0 +1,291 @@
+﻿@model _2001206945_VanHuuDung.Models.HomeModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+
+    <!-- Slider -->
+    <div class="main_slider" style="background-image: url(/Images/banner.png); ">
+        <div class="container fill_height">
+            <div class="row align-items-center fill_height">
+                <div class="col">
+                    <div class="main_slider_content">
+                        <h6 style="color:white" ;>Spring / Summer Collection 2022</h6>
+                        <h1 style="color:white" ;>Get up to 30% Off New Arrivals</h1>
+                        <div class="red_button shop_now_button"><a href="#">shop now</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Banner -->
+
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model.ListGender)
+                {
+                    if (item.GendersId == 1)
+                    {
+                        <div class="col-md-6">
+                            <div class="banner_item align-items-center" style="background-image:url(/Images/banner_1.jpg)">
+                                <div class="banner_category">
+                                    <a href="@Url.Action("Gender","Products",new { @Id = item.GendersId })">@item.GendersName</a>         
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-6">
+                            <div class="banner_item align-items-center" style="background-image:url(/Images/banner_2.jpg)">
+                                <div class="banner_category">
+                                    <a href="@Url.Action("Gender","Products",new { @Id = item.GendersId })">@item.GendersName</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Nike -->
+
+    <div class="new_arrivals">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title new_arrivals_title">
+                        <h2>Nike</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+                        @foreach (var item in Model.ListProduct.Where(row => row.BrandsId == 1))
+                        {
+                            <div class="product-item men">
+                                <div class="product discount product_filter">
+                                    <div class="product_image">
+                                        <a href="@Url.Action("Detail", "Products", new {Id = item.ProductsId})">
+                                            <img src="~/Images/@item.Avatar" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_name"><a href="single.html">@item.ProductsName</a></h6>
+                                        @if (item.Price > item.PriceDiscount)
+                                        {
+                                            <div class="product_price">@item.PriceDiscount<span>@item.Price</span></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product_price">@item.Price</div>
+                                        }
+                                    </div>
+                                </div>
+                                <div style="width: 259px; margin-left: -1px;" class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adidas -->
+
+    <div class="new_arrivals">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title new_arrivals_title">
+                        <h2>Adidas</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+                        @foreach (var item in Model.ListProduct.Where(row => row.BrandsId == 2))
+                        {
+                            <div class="product-item">
+                                <div class="product discount product_filter">
+                                    <div class="product_image">
+                                        <a href="@Url.Action("Detail", "Products", new {Id = item.ProductsId})">
+                                            <img src="~/Images/@item.Avatar" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_name"><a href="single.html">@item.ProductsName</a></h6>
+                                        @if (item.Price > item.PriceDiscount)
+                                        {
+                                            <div class="product_price">@item.PriceDiscount<span>@item.Price</span></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product_price">@item.Price</div>
+                                        }
+                                    </div>
+                                </div>
+                                <div style="width: 259px; margin-left: -1px;" class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deal of the week -->
+
+    <div class="deal_ofthe_week">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="deal_ofthe_week_img">
+                        <img src="~/Images/sale.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 text-right deal_ofthe_week_col">
+                    <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
+                        <div class="section_title">
+                            <h2 style="color:white;">Deal Of The Week</h2>
+                        </div>
+                        <ul class="timer">
+                            <li class="d-inline-flex flex-column justify-content-center align-items-center">
+                                <div id="day" class="timer_num">03</div>
+                                <div class="timer_unit">Day</div>
+                            </li>
+                            <li class="d-inline-flex flex-column justify-content-center align-items-center">
+                                <div id="hour" class="timer_num">15</div>
+                                <div class="timer_unit">Hours</div>
+                            </li>
+                            <li class="d-inline-flex flex-column justify-content-center align-items-center">
+                                <div id="minute" class="timer_num">45</div>
+                                <div class="timer_unit">Mins</div>
+                            </li>
+                            <li class="d-inline-flex flex-column justify-content-center align-items-center">
+                                <div id="second" class="timer_num">23</div>
+                                <div class="timer_unit">Sec</div>
+                            </li>
+                        </ul>
+                        <div  class="red_button deal_ofthe_week_button"><a href="#">shop now</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Best Sellers -->
+
+    <div class="best_sellers">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title new_arrivals_title">
+                        <h2 id="lienket">Best Sellers</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="product_slider_container">
+                        <div class="owl-carousel owl-theme product_slider">
+
+                            <!-- Slide 1 -->
+                            @foreach (var item in Model.ListProduct.Where(row => row.TypeId == 1))
+                            {
+                                <div class="owl-item product_slider_item">
+                                    <div class="product-item">
+                                        <div class="product discount">
+                                            <div class="product_image">
+                                                <a href="@Url.Action("Detail", "Products", new {Id = item.ProductsId})">
+                                                    <img src="~/Images/@item.Avatar" alt="@item.ProductsName">
+                                                </a>
+                                            </div>
+                                            <div class="favorite favorite_left"></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="#">@item.ProductsName</a></h6>
+                                                @if (item.Price > item.PriceDiscount)
+                                                {
+                                                    <div class="product_price">@item.PriceDiscount<span>@item.Price</span></div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="product_price">@item.Price</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                        <!-- Slider Navigation -->
+
+                        <div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefit -->
+
+    <div class="benefit">
+        <div class="container">
+            <div class="row benefit_row">
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>free shipping</h6>
+                            <p>Suffered Alteration in Some Form</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>cach on delivery</h6>
+                            <p>The Internet Tend To Repeat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>45 days return</h6>
+                            <p>Making it Look Like Readable</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>opening all week</h6>
+                            <p>8AM - 09PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

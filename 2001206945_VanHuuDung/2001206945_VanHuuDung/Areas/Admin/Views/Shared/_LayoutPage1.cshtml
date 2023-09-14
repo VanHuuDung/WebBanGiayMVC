@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shoes Shop</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Shoes Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.theme.default.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/main_styles.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/responsive.css" />
+    <link rel="stylesheet" href="~/Content/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/single_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/single_responsive.css">
+</head>
+
+<body>
+    <div class="super_container">
+        @RenderBody()
+        <header class="header trans_300">
+            Main Navigation
+
+            <div class="main_nav_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+
+                            <div class="logo_container">
+                                <a href="#">Shoes<span>Shop</span></a>
+                            </div>
+                            <nav class="navbar">
+                                <ul class="navbar_menu">
+                                    <li><a href="/home/index">home</a></li>
+                                    <li><a href="/products/index">shop</a></li>
+                                    <li><a href="#lienket">bestseller</a></li>
+                                    <li><a href="/Admin/Product/DSSanPham">Admin</a></li>
+                                    <li><a href="https://www.facebook.com/">Facebook</a></li>
+                                    @if (Session["idUser"] != null)
+                                    {
+                                        <li><a href="contact.html">Xin chào: @Session["FullName"]</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="contact.html"></a></li>
+                                    }
+                                </ul>
+                                <ul class="navbar_user">
+                                    @if (Session["idUser"] != null)
+                                    {
+                                        <li><a href="~/home/logout"><i class="fa fa-user" aria-hidden="true"></i>Logout</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="~/home/login"><i class="fa fa-user" aria-hidden="true"></i>Login</a></li>
+                                    }
+                                    <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                    <li class="checkout">
+                                        <a href="@Url.Action("index", "Cart")">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <span id="CartCount" class="checkout_items">@Session["count"]</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="hamburger_container">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+                        <ul class="footer_nav">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="contact.html">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <script src="~/Scripts/easing.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+
+</body>
+
+</html>
+

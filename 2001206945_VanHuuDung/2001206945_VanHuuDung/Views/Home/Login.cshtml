@@ -1,0 +1,43 @@
+﻿@model _2001206945_VanHuuDung.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+<meta charset="utf-8">
+
+<h2>Login</h2>
+<style>
+    button:hover
+    {
+        background-color: blue;
+    }
+</style>
+
+<div style="margin-top: 100px;" class="row justify-content-md-center">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Login
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div style="margin: 20px 0px;" class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+
+                    </div>
+                    <div style="margin: 20px 0px;" class="form-group">
+                        @Html.LabelFor(m => m.Passwords)
+                        @Html.PasswordFor(m => m.Passwords, new { @class = "form-control", @placeholder = "Password" })
+                    </div>
+                    <div class="form-group">
+                        <input style="margin-left: 180px;" type="submit" name="submit" class="btn btn-primary" value="Login" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

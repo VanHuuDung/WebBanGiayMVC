@@ -1,0 +1,105 @@
+﻿@model _2001206945_VanHuuDung.Models.Product
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.ProductsId;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+<h2>Detail</h2>
+<div class="container single_product_container">
+    <div class="row">
+        <div class="col">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/home/index">Home</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="single_product_pics">
+                <div class="row">
+                    <div class="col-lg-9 image_col order-lg-2 order-1">
+                        <div class="single_product_image">
+                            <img src="~/Images/@Model.Avatar" alt="" data-image="~/Images/@Model.Avatar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="product_details">
+                <div class="product_details_title">
+                    <h2>@Model.ProductsName</h2>
+                    <p>@Model.FullDescription</p>
+                </div>
+                <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+                    <a href="#" id="addtocart">
+                        <span class="ti-truck"></span><span>ADD TO CART</span>
+                    </a>
+
+                </div>
+                <div class="original_price">@Model.Price</div>
+                <div class="product_price">@Model.PriceDiscount</div>
+                <ul class="star_rating">
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                </ul>
+                <div class="product_color">
+                    <span>Select Color:</span>
+                    <ul>
+                        <li style="background: #e54e5d"></li>
+                        <li style="background: #252525"></li>
+                        <li style="background: #60b3f3"></li>
+                    </ul>
+                </div>
+                <div class="form-group col-md flex-grow-0">
+                    <div class="input-group mb-3 input-spinner">
+                        <input type="text" id="ipQuantity" class="form-control" value="1">
+                    </div>
+                </div> <!-- col.// -->
+            </div>
+        </div>
+    </div>
+
+</div>

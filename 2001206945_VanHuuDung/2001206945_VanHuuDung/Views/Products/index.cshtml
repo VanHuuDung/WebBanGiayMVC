@@ -1,0 +1,99 @@
+﻿@model List<_2001206945_VanHuuDung.Models.Product>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+
+<h2>index</h2>
+<div class="new_arrivals">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_title new_arrivals_title">
+                    <h2>Tất cả sản phẩm</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+                    @foreach (var item in Model)
+                    {
+                        <div class="product-item men">
+                            <div class="product discount product_filter">
+                                <div class="product_image">
+                                    <a href="@Url.Action("Detail", "Products", new {Id = item.ProductsId})">
+                                        <img src="~/Images/@item.Avatar" alt="">
+                                    </a>
+                                </div>
+                                <div class="product_info">
+                                    <h6 class="product_name"><a href="single.html">@item.ProductsName</a></h6>
+                                    @if (item.Price > item.PriceDiscount)
+                                    {
+                                        <div class="product_price">@item.PriceDiscount<span>@item.Price</span></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product_price">@item.Price</div>
+                                    }
+                                </div>
+                            </div>
+                            <div style="width: 259px; margin-left: -1px;" class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<tr>
+    <td colspan="9">
+        @{ 
+            int PrevPage = ViewBag.page - 1;
+            if(PrevPage <= 0)
+            {
+                PrevPage = 1;
+            }
+            int NextPage = ViewBag.page + 1;
+            if(NextPage > ViewBag.NoOfPages)
+            {
+                NextPage = ViewBag.NoOfPages;
+            }
+
+        }
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="/Products/index?page=@PrevPage">
+                    Previous
+                </a>
+            </li>
+            @for (int i = 0; i < ViewBag.NoOfPages; i++)
+            {
+                if (i + 1 == ViewBag.page)
+                {
+                    <li class="page-item active">
+                        <a class="page-link" href="/Products/index?page=@(i+1)">
+                            @(i+1)
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="/Products/index?page=@(i+1)">
+                            @(i+1)
+                        </a>
+                    </li>
+                }
+
+            }
+            <li class="page-item">
+                <a class="page-link" href="/Products/index?page=@NextPage">
+                    next
+                </a>
+            </li>
+        </ul>
+    </td>
+</tr>
+
